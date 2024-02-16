@@ -67,6 +67,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
     storageBucket: 'temp-1fe61.appspot.com',
+    iosClientId: '254032794739-u0ip0k86m6ebo4ni9ab9q4ucn100u976.apps.googleusercontent.com',
     iosBundleId: 'foodbridge.com.foodbridge',
   );
 
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
     storageBucket: 'temp-1fe61.appspot.com',
+    iosClientId: '254032794739-b44hvrl5htsle9l1mt28kgcelndqhtoa.apps.googleusercontent.com',
     iosBundleId: 'foodbridge.com.foodbridge.RunnerTests',
   );
 }

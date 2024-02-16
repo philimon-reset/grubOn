@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
+class TextBox extends StatefulWidget {
   final controller;
   final String hintText;
-  final bool hideText;
-  const MyTextField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      required this.hideText});
+  const TextBox({super.key, required this.controller, required this.hintText});
 
+  @override
+  State<TextBox> createState() => _TextBoxState();
+}
+
+class _TextBoxState extends State<TextBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      padding: const EdgeInsets.all(10.0),
       child: TextField(
-          controller: controller,
-          obscureText: hideText,
+          controller: widget.controller,
           decoration: InputDecoration(
-              constraints: BoxConstraints(maxHeight: 60),
-              hintText: hintText,
+              label: Text(widget.hintText),
+              hintText: widget.hintText,
               hintStyle: TextStyle(color: Colors.grey.shade400),
               enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(12)),
               focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade600),
-                  borderRadius: BorderRadius.circular(20)),
+                  borderRadius: BorderRadius.circular(12)),
               fillColor: Colors.white,
               filled: true)),
     );

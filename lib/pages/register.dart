@@ -1,7 +1,11 @@
+import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
+import "package:foodbridge/auth_service/firebase.dart";
+import "package:foodbridge/auth_service/models/user_model.dart";
 import "package:foodbridge/components/my_button.dart";
 import "package:foodbridge/components/my_textfield.dart";
+import "package:foodbridge/components/show_error.dart";
 import "package:foodbridge/components/squareTile.dart";
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,10 +19,17 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  // set up database Services
+  final DatabaseService _databaseService = DatabaseService();
+
   // text editing controllers
   final emailController = TextEditingController();
   final userPasswordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final userNameController = TextEditingController();
+  final addressController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  bool? isEstablishedController = false;
 
 // dispose controllers
   @override
@@ -26,6 +37,9 @@ class _RegisterPageState extends State<RegisterPage> {
     emailController.dispose();
     userPasswordController.dispose();
     confirmPasswordController.dispose();
+    userNameController.dispose();
+    addressController.dispose();
+    phoneNumberController.dispose();
     super.dispose();
   }
 
@@ -44,8 +58,20 @@ class _RegisterPageState extends State<RegisterPage> {
         // create user
         final credential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: emailController.text,
-                password: userPasswordController.text);
+                email: emailController.text.trim(),
+                password: userPasswordController.text.trim());
+
+        // add user details
+        UserModel user = UserModel(
+            createdOn: Timestamp.now(),
+            userName: userNameController.text.trim(),
+            phoneNumber: int.parse(phoneNumberController.text.trim()),
+            email: emailController.text.trim(),
+            address: addressController.text.trim(),
+            password: userPasswordController.text.trim(),
+            isEstablishment: isEstablishedController!);
+        // add user
+        _databaseService.addUserDetails(user);
       } else {
         await showErrorDialog(context, "Passwords do not match");
       }
@@ -73,29 +99,6 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  Future<void> showErrorDialog(BuildContext context, String text) {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text("An error occurred",
-                style: TextStyle(color: Colors.white)),
-            backgroundColor: const Color.fromRGBO(25, 37, 61, 1),
-            content: Text(
-              text,
-              style: const TextStyle(color: Colors.white),
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text("OK"))
-            ],
-          );
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,7 +110,6 @@ class _RegisterPageState extends State<RegisterPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 10),
                   const Icon(
                     Icons.door_front_door_outlined,
                     size: 60,
@@ -143,33 +145,82 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  MyButton(buttonName: "Sign Up", onTap: signUserUp),
+                  // userName
+                  MyTextField(
+                    controller: userNameController,
+                    hintText: "User Name",
+                    hideText: false,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  // Phone Number
+                  MyTextField(
+                    controller: phoneNumberController,
+                    hintText: "Phone Number",
+                    hideText: false,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  // Set Address
+                  MyTextField(
+                    controller: addressController,
+                    hintText: "Address",
+                    hideText: false,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.all(14.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Divider(
-                                thickness: 0.5, color: Colors.grey.shade400)),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Text("or Continue with"),
-                        ),
-                        Expanded(
-                            child: Divider(
-                                thickness: 0.5, color: Colors.grey.shade400))
-                      ],
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    child: CheckboxListTile(
+                      title: const Text("Are you an Establishment?"),
+                      value: isEstablishedController,
+                      onChanged: (bool? newValue) => {
+                        setState(() {
+                          isEstablishedController = newValue;
+                        })
+                      },
+                      activeColor: Colors.purple,
+                      checkColor: Colors.white,
+                      controlAffinity: ListTileControlAffinity.leading,
                     ),
                   ),
-                  // Google sign in
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [SquareTile(imagePath: "lib/images/google.png")],
+                  const SizedBox(
+                    height: 10,
                   ),
+                  MyButton(buttonName: "Sign Up", onTap: signUserUp),
+                  // Padding(
+                  //   padding: const EdgeInsets.all(14.0),
+                  //   child: Row(
+                  //     children: [
+                  //       Expanded(
+                  //           child: Divider(
+                  //               thickness: 0.5, color: Colors.grey.shade400)),
+                  //       const Padding(
+                  //         padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  //         child: Text("or Continue with"),
+                  //       ),
+                  //       Expanded(
+                  //           child: Divider(
+                  //               thickness: 0.5, color: Colors.grey.shade400))
+                  //     ],
+                  //   ),
+                  // ),
+                  // Google sign in
+                  // const Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [SquareTile(imagePath: "lib/images/google.png")],
+                  // ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
+                  // Register Now
                   const SizedBox(
                     height: 20,
                   ),
-                  // Register Now
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

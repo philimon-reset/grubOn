@@ -1,122 +1,40 @@
-// import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:foodbridge/auth_service/models/user_model.dart';
 
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:money_assistant_2608/project/classes/custom_toast.dart';
+// ignore: constant_identifier_names
+const String USER_MODEL_REF = "Users";
 
-// class FirebaseAuthentication {
-//   static Future<FirebaseApp> initializeFireBase() async {
-//     FirebaseApp firebaseApp = await Firebase.initializeApp();
-//     return firebaseApp;
-//   } 
+class DatabaseService {
+  final _firestore = FirebaseFirestore.instance;
 
-//   static Future<User?> googleSignIn({required BuildContext context}) async {
-//     User? user;
-//     FirebaseAuth auth = FirebaseAuth.instance;
-//     final GoogleSignIn googleSignIn = GoogleSignIn();
-//     final GoogleSignInAccount? googleSignInAccount =
-//         await googleSignIn.signIn();
+  late final CollectionReference _userRef;
 
-//     if (googleSignInAccount != null) {
-//       final GoogleSignInAuthentication googleSignInAuthentication =
-//           await googleSignInAccount.authentication;
-//       final AuthCredential credential = GoogleAuthProvider.credential(
-//           accessToken: googleSignInAuthentication.accessToken,
-//           idToken: googleSignInAuthentication.idToken);
-//       try {
-//         final UserCredential userCredential =
-//             await auth.signInWithCredential(credential);
-//         user = userCredential.user;
-//       } on FirebaseException catch (e) {
-//         if (e.code == 'account-exists-with-different-credentia') {
-//           customToast(context,
-//               'The account already exists with a different credential.');
-//         } else if (e.code == 'invalid-credential') {
-//           customToast(context,
-//               'Error occurred while accessing credentials. Try again.');
-//         }
-//       } catch (e) {
-//         customToast(context, 'Error occurred using Google Sign-In. Try again.');
-//       }
-//     }
-//     return user;
-//   }
+  DatabaseService() {
+    _userRef = _firestore.collection(USER_MODEL_REF).withConverter<UserModel>(
+          fromFirestore: (snapshot, options) {
+            return UserModel.fromJson(snapshot.data()!);
+          },
+          toFirestore: (UserModel value, _) => value.toJson(),
+        );
+  }
 
-//   static Future<void> signOut({required BuildContext context}) async {
-//     final GoogleSignIn googleSignIn = GoogleSignIn();
-//     try {
-//       await googleSignIn.signOut();
-//     } catch (e) {
-//       customToast(context, 'Error signing out. Try again.');
-//     }
-//   }
-// }
-// final FirebaseAuth _auth = FirebaseAuth.instance;
-//
-// UserUid _userUid(User user) {
-//   return user != null ? UserUid(uid: user.uid) : null;
-// }
-//
-// // what is get?
-// Stream<UserUid> get user {
-//   return _auth.authStateChanges().map((User user) => _userUid(user));
-//   // .map(_userUid);
-// }
-//
-// // sign in anon
-// Future signInAnon() async {
-//   try {
-//     UserCredential result = await _auth.signInAnonymously();
-//     User user = result.user;
-//     return _userUid(user);
-//   } catch (e) {
-//     print(e.toString());
-//     return null;
-//   }
-// }
-//
-// // sign in with email and password
-// Future signInWithEmailAndPassword(String email, String password) async {
-//   try {
-//     UserCredential result = await _auth.signInWithEmailAndPassword(
-//         email: email, password: password);
-//     User user = result.user;
-//     return user;
-//   } catch (error) {
-//     print(error.toString());
-//     return null;
-//   }
-// }
-//
-// // register with email and password
-// Future registerWithEmailAndPassword(String email, String password) async {
-//   try {
-//     UserCredential result = await _auth.createUserWithEmailAndPassword(
-//         email: email, password: password);
-//     User user = result.user;
-//     return _userUid(user);
-//   } catch (error) {
-//     print(error.toString());
-//     return null;
-//   }
-// }
-//
-// // sign out
-// Future signOut() async {
-//   try {
-//     return await _auth.signOut();
-//   } catch (error) {
-//     print(error.toString());
-//     return null;
-//   }
-// }
-// }
+  Future<QuerySnapshot<Object?>> getUserDetails() async {
+    final currentUser = FirebaseAuth.instance.currentUser!;
+    // return _userRef.snapshots();
+    final current =
+        await _userRef.where("email", isEqualTo: currentUser.email).get();
+    return current;
+    // return _userRef.snapshots();
+  }
 
-// class UserUid {
-//   final String uid;
-//
-//   UserUid({this.uid});
-// }
+  Future addUserDetails(UserModel user) async {
+    _userRef.add(user);
+  }
+
+  void updateUserDetails(String email, UserModel user) async {
+    final current = await _userRef.where("email", isEqualTo: user.email).get();
+    print(current.docs.first.reference.id);
+    _userRef.doc(current.docs.first.reference.id).update(user.toJson());
+  }
+}
