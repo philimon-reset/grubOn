@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
-class TextBox extends StatefulWidget {
-  final controller;
+class MyTextBox extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
-  const TextBox({super.key, required this.controller, required this.hintText});
+  final bool? readOnly;
+  const MyTextBox(
+      {super.key,
+      required this.controller,
+      required this.hintText,
+      this.readOnly});
 
   @override
-  State<TextBox> createState() => _TextBoxState();
+  State<MyTextBox> createState() => _TextBoxState();
 }
 
-class _TextBoxState extends State<TextBox> {
+class _TextBoxState extends State<MyTextBox> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(6.0),
       child: TextField(
+          readOnly: widget.readOnly ?? false,
           controller: widget.controller,
           decoration: InputDecoration(
               label: Text(widget.hintText),

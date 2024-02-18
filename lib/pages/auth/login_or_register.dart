@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/pages/login.dart';
-import 'package:foodbridge/pages/register.dart';
+import 'package:foodbridge/pages/auth/login.dart';
+import 'package:foodbridge/pages/auth/register.dart';
 
 class LoginOrRegisterPage extends StatefulWidget {
   const LoginOrRegisterPage({super.key});

@@ -2,10 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
 import 'package:foodbridge/auth_service/models/user_model.dart';
-import 'package:foodbridge/components/my_button.dart';
-import 'package:foodbridge/components/password_box.dart';
-import 'package:foodbridge/components/show_error.dart';
-import 'package:foodbridge/components/text_box.dart';
+import 'package:foodbridge/components/home_components/profile_fields.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -25,8 +22,8 @@ class _ProfilePageState extends State<ProfilePage> {
   final passwordController = TextEditingController();
   final addressController = TextEditingController();
   final phoneNumberController = TextEditingController();
-  late final bool isEstablishment;
-  late final UserModel user;
+  bool isEstablishment = false;
+  late UserModel user;
   late Future<UserModel> dataFuture;
 
   // setup inital values
@@ -129,53 +126,27 @@ class _ProfilePageState extends State<ProfilePage> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                            children: [
-                              TextBox(
-                                controller: emailController,
-                                hintText: "Email",
-                              ),
-                              PassWordTextField(
-                                  controller: passwordController,
-                                  hintText: "Password"),
-                              TextBox(
-                                controller: userNameController,
-                                hintText: "User Name",
-                              ),
-                              TextBox(
-                                controller: phoneNumberController,
-                                hintText: "Phone Number",
-                              ),
-                              TextBox(
-                                controller: addressController,
-                                hintText: "Address",
-                              ),
-                              const SizedBox(
-                                height: 80,
-                              ),
-                              TextButton(
-                                onPressed: updateUser,
-                                style: TextButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8)),
-                                  padding: const EdgeInsets.only(
-                                      bottom: 20,
-                                      left: 140,
-                                      right: 140,
-                                      top: 20),
-                                  foregroundColor: Colors.white,
-                                  backgroundColor:
-                                      const Color.fromRGBO(25, 37, 61, 1),
-                                  textStyle: const TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                child: const Text("Save!"),
-                              )
-                            ],
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          child: CheckboxListTile(
+                            title: const Text("Are you an Establishment?"),
+                            value: isEstablishment,
+                            onChanged: (bool? newValue) => {
+                              setState(() {
+                                isEstablishment = newValue!;
+                              })
+                            },
+                            activeColor: Colors.purple,
+                            checkColor: Colors.white,
+                            controlAffinity: ListTileControlAffinity.leading,
                           ),
+                        ),
+                        ProfileTextFields(
+                          email: emailController,
+                          address: addressController,
+                          password: passwordController,
+                          phoneNumber: phoneNumberController,
+                          userName: userNameController,
+                          callback: updateUser,
                         )
                       ],
                     ),

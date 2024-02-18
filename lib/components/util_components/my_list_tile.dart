@@ -12,6 +12,10 @@ class MyListTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ListTile(
+        visualDensity: VisualDensity.comfortable,
+        shape: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide.none),
         onTap: onTap,
         leading: Icon(
           icon,
@@ -19,7 +23,7 @@ class MyListTile extends StatelessWidget {
         ),
         title: Text(
           text,
-          style: TextStyle(color: Colors.grey.shade400),
+          style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
         ),
       ),
     );

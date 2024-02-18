@@ -1,8 +1,8 @@
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
-import "package:foodbridge/components/my_button.dart";
-import "package:foodbridge/components/my_textfield.dart";
-import "package:foodbridge/components/squareTile.dart";
+import 'package:foodbridge/components/util_components/my_button.dart';
+import 'package:foodbridge/components/field_components/my_textfield.dart';
+import 'package:foodbridge/components/util_components/squareTile.dart';
 import "package:google_fonts/google_fonts.dart";
 
 class LoginPage extends StatefulWidget {
@@ -60,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
         default:
           print(e.code);
       }
+      Navigator.pop(context);
     }
   }
 
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
           return AlertDialog(
             title: const Text("An error occurred",
                 style: TextStyle(color: Colors.white)),
-            backgroundColor: const Color.fromRGBO(25, 37, 61, 1),
+            backgroundColor: const Color.fromARGB(255, 78, 180, 179),
             content: Text(
               text,
               style: const TextStyle(color: Colors.white),

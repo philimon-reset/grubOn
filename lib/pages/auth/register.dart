@@ -3,10 +3,10 @@ import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import "package:foodbridge/auth_service/firebase.dart";
 import "package:foodbridge/auth_service/models/user_model.dart";
-import "package:foodbridge/components/my_button.dart";
-import "package:foodbridge/components/my_textfield.dart";
-import "package:foodbridge/components/show_error.dart";
-import "package:foodbridge/components/squareTile.dart";
+import 'package:foodbridge/components/util_components/my_button.dart';
+import 'package:foodbridge/components/field_components/my_textfield.dart';
+import 'package:foodbridge/components/util_components/show_error.dart';
+import 'package:foodbridge/components/util_components/squareTile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {

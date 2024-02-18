@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbridge/components/my_list_tile.dart';
+import 'package:foodbridge/components/util_components/my_list_tile.dart';
 
 class MyTools extends StatelessWidget {
   final void Function()? signUserOut;
@@ -9,9 +10,11 @@ class MyTools extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // current user
+    final currentUser = FirebaseAuth.instance.currentUser!;
     return Drawer(
       width: 200,
-      backgroundColor: const Color.fromRGBO(25, 37, 61, 1),
+      backgroundColor: const Color.fromARGB(255, 78, 180, 179),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         // home
@@ -19,7 +22,21 @@ class MyTools extends StatelessWidget {
           children: [
             // header
             const DrawerHeader(
-                child: Icon(Icons.person, color: Colors.white, size: 50)),
+              padding: EdgeInsets.only(top: 60),
+              child: Column(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: Color(0xffE6E6E6),
+                    radius: 40,
+                    child: Icon(
+                      Icons.person,
+                      color: Color.fromARGB(255, 141, 139, 139),
+                      size: 39,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             MyListTile(
               icon: Icons.home,
               text: "H O M E",

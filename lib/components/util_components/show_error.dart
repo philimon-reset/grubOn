@@ -7,7 +7,7 @@ Future<void> showErrorDialog(BuildContext context, String text) {
         return AlertDialog(
           title: const Text("An error occurred",
               style: TextStyle(color: Colors.white)),
-          backgroundColor: const Color.fromRGBO(25, 37, 61, 1),
+          backgroundColor: const Color.fromARGB(255, 78, 180, 179),
           content: Text(
             text,
             style: const TextStyle(color: Colors.white),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PassWordTextField extends StatefulWidget {
-  final controller;
+  final TextEditingController controller;
   final String hintText;
   const PassWordTextField(
       {super.key, required this.controller, required this.hintText});

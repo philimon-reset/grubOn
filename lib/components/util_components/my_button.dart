@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
             padding:
                 EdgeInsets.only(bottom: 20, left: 100, right: 100, top: 20),
             foregroundColor: Colors.white,
-            backgroundColor: const Color.fromRGBO(25, 37, 61, 1),
+            backgroundColor: const Color.fromARGB(255, 78, 180, 179),
             textStyle: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
