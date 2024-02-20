@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GroceryModel {
+  final String id;
   final String about;
   final String name;
   final String? photo;
@@ -14,6 +15,7 @@ class GroceryModel {
 
   const GroceryModel(
       {required this.about,
+      required this.id,
       required this.userEmail,
       required this.count,
       required this.name,
@@ -26,6 +28,7 @@ class GroceryModel {
 
   GroceryModel.fromJson(Map<String, dynamic> json)
       : about = json['about'],
+        id = json['id'],
         userEmail = json['userEmail'],
         name = json['name'],
         photo = json['photo'],
@@ -38,6 +41,7 @@ class GroceryModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'about': about,
       'name': name,
       'userEmail': userEmail,
@@ -63,6 +67,7 @@ class GroceryModel {
       Timestamp? expireDate,
       int? count}) {
     return GroceryModel(
+      id: id,
       userEmail: userEmail ?? this.userEmail,
       count: count ?? this.count,
       about: about ?? this.about,

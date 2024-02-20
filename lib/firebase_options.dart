@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
     authDomain: 'temp-1fe61.firebaseapp.com',
+    databaseURL: 'https://temp-1fe61-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'temp-1fe61.appspot.com',
     measurementId: 'G-TSXMHTYMCM',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:254032794739:android:8d7e6111ff1a2a6e7cc606',
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
+    databaseURL: 'https://temp-1fe61-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'temp-1fe61.appspot.com',
   );
 
@@ -66,6 +68,7 @@ class DefaultFirebaseOptions {
     appId: '1:254032794739:ios:a1c9d2d7541a200f7cc606',
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
+    databaseURL: 'https://temp-1fe61-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'temp-1fe61.appspot.com',
     iosClientId: '254032794739-u0ip0k86m6ebo4ni9ab9q4ucn100u976.apps.googleusercontent.com',
     iosBundleId: 'foodbridge.com.foodbridge',
@@ -76,6 +79,7 @@ class DefaultFirebaseOptions {
     appId: '1:254032794739:ios:75e33bd9d8d4f1be7cc606',
     messagingSenderId: '254032794739',
     projectId: 'temp-1fe61',
+    databaseURL: 'https://temp-1fe61-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'temp-1fe61.appspot.com',
     iosClientId: '254032794739-b44hvrl5htsle9l1mt28kgcelndqhtoa.apps.googleusercontent.com',
     iosBundleId: 'foodbridge.com.foodbridge.RunnerTests',

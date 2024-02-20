@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
 import 'package:foodbridge/auth_service/models/grocery_model.dart';
@@ -12,23 +11,13 @@ class Groceries extends StatefulWidget {
 }
 
 class _GroceriesState extends State<Groceries> {
-  // needed variables
-
   // set up database Services
   final DatabaseService _databaseService = DatabaseService();
-  // current user
-  final currentUser = FirebaseAuth.instance.currentUser!;
-
-  // inital state
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _databaseService.getGroceries(),
+      stream: _databaseService.getMyGroceries(),
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:
@@ -48,10 +37,13 @@ class _GroceriesState extends State<Groceries> {
               } else {
                 return ListView.builder(
                   itemCount: myGroceries.length,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(8),
                   itemBuilder: (context, index) {
                     GroceryModel grocery = myGroceries[index].data();
-                    return Grocery(grocery: grocery);
+                    return Grocery(
+                      grocery: grocery,
+                      selling: false,
+                    );
                   },
                 );
               }

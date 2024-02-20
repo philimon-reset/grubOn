@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
 import 'package:foodbridge/components/util_components/my_button.dart';
@@ -37,30 +39,24 @@ class _LoginPageState extends State<LoginPage> {
           );
         });
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: emailController.text, password: userPasswordController.text);
-      // ignore: use_build_context_synchronously
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
-      // ignore: use_build_context_synchronously
       Navigator.pop(context);
       switch (e.code) {
         case 'user-not-found':
-          // ignore: use_build_context_synchronously
           await showErrorDialog(context, "User not found");
           break;
         case 'wrong-password':
-          // ignore: use_build_context_synchronously
           await showErrorDialog(context, "Wrong Credentials");
           break;
         case 'invalid-email':
-          // ignore: use_build_context_synchronously
           await showErrorDialog(context, "Invalid Email");
           break;
         default:
           print(e.code);
       }
-      Navigator.pop(context);
     }
   }
 

@@ -70,7 +70,7 @@ class _SelectGroceryTypeState extends State<SelectGroceryType> {
             final error = snapshot.error;
             return Text("We have the error: $error");
           } else {
-            return const Text("No Types");
+            return const Center(child: Text("No Types"));
           }
         });
   }

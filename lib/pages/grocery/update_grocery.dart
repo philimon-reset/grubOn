@@ -6,10 +6,8 @@ import 'package:foodbridge/auth_service/firebase.dart';
 import 'package:foodbridge/auth_service/models/grocery_model.dart';
 import 'package:foodbridge/auth_service/models/user_model.dart';
 import 'package:foodbridge/components/grocery/grocery_fields.dart';
-import 'package:foodbridge/components/grocery/select_type.dart';
 import 'package:foodbridge/components/util_components/show_error.dart';
 import 'package:foodbridge/util/helpers.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UpdateGrocery extends StatefulWidget {
   final GroceryModel grocery;
@@ -32,6 +30,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
   ValueNotifier<bool> isSellable = ValueNotifier<bool>(false);
   ValueNotifier<bool> readOnly = ValueNotifier<bool>(true);
   ValueNotifier<int> counter = ValueNotifier<int>(1);
+  double turns = 0.0;
 
   // set up database Services
   final DatabaseService _databaseService = DatabaseService();
@@ -54,17 +53,6 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
   void initState() {
     super.initState();
     setInitalValues();
-  }
-
-  // dispose controllers
-  @override
-  void dispose() {
-    aboutController.dispose();
-    nameController.dispose();
-    photoController.dispose();
-    typeController.dispose();
-    expireDateController.dispose();
-    super.dispose();
   }
 
 // check if required fields are present
@@ -121,7 +109,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
             type: typeController.text.trim(),
             expireDate: Timestamp.fromDate(
                 DateTime(expireDate.year, expireDate.month, expireDate.day)));
-        _databaseService.updateGrocery(widget.grocery.name, newGrocery);
+        _databaseService.updateGrocery(widget.grocery.id, newGrocery);
         // leave page
         Navigator.pop(context);
       }
@@ -140,25 +128,24 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
           title: const Center(
               widthFactor: 1.8, child: Text('Update your Grocery')),
           actions: [
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  readOnly.value = !readOnly.value;
-                });
-              },
-              style: TextButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                foregroundColor: Colors.white,
-                backgroundColor: readOnly.value
-                    ? Colors.red
-                    : const Color.fromARGB(255, 78, 180, 179),
-                textStyle: const TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.bold,
-                ),
+            CircleAvatar(
+              radius: 20,
+              backgroundColor: readOnly.value
+                  ? Colors.grey
+                  : const Color.fromARGB(255, 78, 180, 179),
+              child: IconButton(
+                color: Colors.white,
+                onPressed: () {
+                  setState(() {
+                    readOnly.value = !readOnly.value;
+                    turns += 1 / 4;
+                  });
+                },
+                icon: AnimatedRotation(
+                    turns: turns,
+                    duration: const Duration(milliseconds: 400),
+                    child: const Icon(Icons.settings)),
               ),
-              child: const Text("Edit"),
             ),
             const SizedBox(
               width: 10,
@@ -168,6 +155,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
         body: ListView(
           children: [
             GroceryFields(
+                totalCount: counter.value,
                 aboutController: aboutController,
                 nameController: nameController,
                 priceController: priceController,

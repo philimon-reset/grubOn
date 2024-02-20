@@ -7,6 +7,7 @@ import 'package:foodbridge/auth_service/models/grocery_model.dart';
 import 'package:foodbridge/auth_service/models/user_model.dart';
 import 'package:foodbridge/components/grocery/grocery_fields.dart';
 import 'package:foodbridge/components/util_components/show_error.dart';
+import 'package:uuid/uuid.dart';
 
 class AddGrocery extends StatefulWidget {
   const AddGrocery({super.key});
@@ -103,7 +104,9 @@ class _AddGroceryState extends State<AddGrocery> {
       bool success = await isFieldsGood();
       if (success && currentUser.email.isNotEmpty) {
         DateTime expireDate = DateTime.parse(expireDateController.text);
+        Uuid uuid = const Uuid();
         GroceryModel newGrocery = GroceryModel(
+            id: uuid.v4(),
             userEmail: currentUser.email,
             count: counter.value,
             about: aboutController.text,
@@ -144,6 +147,7 @@ class _AddGroceryState extends State<AddGrocery> {
       ),
       body: ListView(children: [
         GroceryFields(
+          totalCount: counter.value,
           typeController: typeController,
           aboutController: aboutController,
           nameController: nameController,
@@ -165,7 +169,7 @@ class _AddGroceryState extends State<AddGrocery> {
                   borderRadius: BorderRadius.circular(20)),
               padding: const EdgeInsets.only(bottom: 20, top: 20),
               foregroundColor: Colors.white,
-              backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+              backgroundColor: Color(0xFF4EB4B3),
               textStyle: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,

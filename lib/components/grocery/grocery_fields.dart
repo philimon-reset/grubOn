@@ -11,21 +11,26 @@ class GroceryFields extends StatefulWidget {
   final TextEditingController expireDateController;
   final TextEditingController typeController;
   final Function()? callback;
+  final bool? notCartPage;
   final ValueNotifier<bool> isSellable;
   final ValueNotifier<bool> readOnly;
   final ValueNotifier<int> counter;
+  final int totalCount;
 
-  const GroceryFields(
-      {super.key,
-      required this.aboutController,
-      required this.nameController,
-      required this.priceController,
-      required this.expireDateController,
-      this.callback,
-      required this.readOnly,
-      required this.typeController,
-      required this.isSellable,
-      required this.counter});
+  const GroceryFields({
+    super.key,
+    required this.aboutController,
+    required this.nameController,
+    required this.priceController,
+    required this.expireDateController,
+    this.callback,
+    required this.readOnly,
+    required this.typeController,
+    required this.isSellable,
+    required this.counter,
+    this.notCartPage = true,
+    required this.totalCount,
+  });
 
   @override
   State<GroceryFields> createState() => _GroceryFieldsState();
@@ -46,7 +51,13 @@ class _GroceryFieldsState extends State<GroceryFields> {
   // increment counter
   void incrementCount() {
     setState(() {
-      widget.counter.value++;
+      if (widget.notCartPage == false) {
+        widget.counter.value < widget.totalCount
+            ? widget.counter.value++
+            : widget.counter.value;
+      } else {
+        widget.counter.value++;
+      }
     });
   }
 
@@ -167,7 +178,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                         return Switch(
                           thumbIcon: thumbIcon,
                           value: widget.isSellable.value,
-                          activeColor: Color.fromARGB(255, 78, 180, 179),
+                          activeColor: const Color.fromARGB(255, 78, 180, 179),
                           onChanged: widget.readOnly.value
                               ? (bool value) {}
                               : (bool value) {
@@ -190,9 +201,9 @@ class _GroceryFieldsState extends State<GroceryFields> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   // minus button
-                  widget.readOnly.value
+                  (widget.readOnly.value) && (widget.notCartPage ?? true)
                       ? Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.white, shape: BoxShape.circle),
                           child: IconButton(
                               icon: const Icon(null), onPressed: () {}),
@@ -211,7 +222,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                       child: Center(
                           child: Container(
                         padding: const EdgeInsets.all(8),
-                        margin: EdgeInsets.symmetric(horizontal: 3),
+                        margin: const EdgeInsets.symmetric(horizontal: 3),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: const Color.fromARGB(255, 78, 180, 179)),
@@ -221,9 +232,9 @@ class _GroceryFieldsState extends State<GroceryFields> {
                         ),
                       ))),
                   // plus button
-                  widget.readOnly.value
+                  (widget.readOnly.value && (widget.notCartPage ?? true))
                       ? Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Colors.white, shape: BoxShape.circle),
                           child: IconButton(
                               icon: const Icon(null), onPressed: () {}),

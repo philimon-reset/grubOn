@@ -2,9 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbridge/components/home_components/drawer.dart';
 import 'package:foodbridge/pages/grocery/add_grocery.dart';
-import 'package:foodbridge/pages/grocery/grocery_page.dart';
+import 'package:foodbridge/pages/grocery/mycart.dart';
+import 'package:foodbridge/pages/home/grocery_page.dart';
 import 'package:foodbridge/pages/home/profile_page.dart';
 import 'package:foodbridge/pages/home/sellers_page.dart';
+import 'package:foodbridge/pages/others/map_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -37,20 +39,32 @@ class _HomePageState extends State<HomePage> {
   ];
 
   // display modal to create grocery
-  void _displayGroceryAddModal() async {
-    // Navigator.pop(context);
+  void _displayGroceryAddModal() {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const AddGrocery()));
+  }
+
+  // display modal for map
+  void _displayMapFilter() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const MyMap()));
+  }
+
+  // display modal for shopping cart
+  void displayShoppingCart() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const MyCart()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-          onPressed: _displayGroceryAddModal,
+          onPressed:
+              _selectedIndex == 0 ? _displayGroceryAddModal : _displayMapFilter,
           backgroundColor: const Color.fromARGB(255, 78, 180, 179),
           child: Icon(
-            _selectedIndex == 0 ? Icons.add : Icons.local_grocery_store,
+            _selectedIndex == 0 ? Icons.add : Icons.map,
             color: Colors.white,
           )),
       drawer: MyTools(profilePage: goToProfilePage, signUserOut: signUserOut),
@@ -62,12 +76,9 @@ class _HomePageState extends State<HomePage> {
         title: const Center(child: Text("Home")),
         actions: [
           IconButton(
-            icon: const Icon(Icons.add_alert),
-            tooltip: 'Show Snackbar',
-            onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Ping Functionality')));
-            },
+            icon: const Icon(Icons.shopping_cart),
+            tooltip: 'Map',
+            onPressed: displayShoppingCart,
           )
         ],
       ),
@@ -98,7 +109,7 @@ class _HomePageState extends State<HomePage> {
           tabs: const [
             GButton(icon: Icons.home, text: "Groceries"),
             GButton(
-              icon: Icons.map,
+              icon: Icons.shopping_bag,
               text: 'Buy',
             )
           ]),
