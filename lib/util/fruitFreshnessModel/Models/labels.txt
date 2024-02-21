@@ -1,0 +1,16 @@
+FreshApple
+FreshBanana
+FreshGrape
+FreshGuava
+FreshJujube
+FreshOrange
+FreshPomegranate
+FreshStrawberry
+RottenApple
+RottenBanana
+RottenGrape
+RottenGuava
+RottenJujube
+RottenOrange
+RottenPomegranate
+RottenStrawberry
