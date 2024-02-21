@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbridge/components/util_components/my_list_tile.dart';
 
@@ -15,7 +14,6 @@ class MyTools extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // current user
-    final currentUser = FirebaseAuth.instance.currentUser!;
     return Drawer(
       width: 240,
       backgroundColor: const Color.fromARGB(255, 78, 180, 179),

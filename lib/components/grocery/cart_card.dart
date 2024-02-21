@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {
@@ -13,24 +11,6 @@ class CartItem extends StatefulWidget {
 }
 
 class _CartItemState extends State<CartItem> {
-  // // increment counter
-  // void incrementCount() {
-  //   setState(() {
-  //     widget.item["Amount"] < widget.item["maxAmount"]
-  //         ? widget.item["Amount"]++
-  //         : widget.item["Amount"];
-  //   });
-  // }
-
-  // // decrement counter
-  // void decrementCount() {
-  //   setState(() {
-  //     widget.item["Amount"] > 1
-  //         ? widget.item["Amount"]--
-  //         : widget.item["Amount"] = 1;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final DatabaseService databaseService = DatabaseService();

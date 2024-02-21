@@ -1,15 +1,13 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:foodbridge/auth_service/firebase.dart';
 import 'package:foodbridge/auth_service/models/filter_provider.dart';
 import 'package:foodbridge/auth_service/models/pickup_model.dart';
 import 'package:foodbridge/util/helpers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';
-
-import '../../auth_service/firebase.dart';
 
 class MyMap extends StatefulWidget {
   const MyMap({super.key});
@@ -22,6 +20,17 @@ class _MyMapState extends State<MyMap> {
   // set up database Services
   final DatabaseService _databaseService = DatabaseService();
 
+  // set up variables
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+
+// add custom icon
+  void addCustomIcon() async {
+    markerIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(), "lib/images/icons/icons8-home-128.png");
+    setState(() {});
+  }
+
+  // get Locations
   Future<List<PickUpModel>> getLocations() async {
     final List<PickUpModel> pickups = [];
     final QuerySnapshot locations =
@@ -33,6 +42,7 @@ class _MyMapState extends State<MyMap> {
     return pickups;
   }
 
+  // center User position
   Future centerPosition(LatLng current) async {
     final GoogleMapController controller = await mapController.future;
     CameraPosition cameraPosition = CameraPosition(target: current, zoom: 14);
@@ -43,7 +53,7 @@ class _MyMapState extends State<MyMap> {
   @override
   void initState() {
     super.initState();
-    getLocations();
+    addCustomIcon();
   }
 
   Location locationController = Location();
@@ -81,13 +91,16 @@ class _MyMapState extends State<MyMap> {
                 final Set<Marker> markers = locations.map((current) {
                   return Marker(
                       markerId: MarkerId(current.name),
-                      infoWindow: InfoWindow(title: current.name),
+                      icon: markerIcon,
+                      infoWindow: InfoWindow(
+                          title: current.name,
+                          snippet: "Tap to see available items",
+                          onTap: () {
+                            context.read<FilterModel>().addFilter(current.name);
+                            Navigator.pop(context);
+                          }),
                       position: LatLng(
-                          current.pickup.latitude, current.pickup.longitude),
-                      onTap: () {
-                        context.read<FilterModel>().addFilter(current.name);
-                        Navigator.pop(context);
-                      });
+                          current.pickup.latitude, current.pickup.longitude));
                 }).toSet();
 
                 // add user location to markers
@@ -105,8 +118,9 @@ class _MyMapState extends State<MyMap> {
                   markers: markers,
                 );
               } else {
-                return const Center(
-                  child: Text("Error occured"),
+                final error = snapshot.error;
+                return Center(
+                  child: Text("Error Occurred: $error"),
                 );
               }
           }

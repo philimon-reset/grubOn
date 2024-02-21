@@ -42,28 +42,29 @@ class _SellersPageState extends State<SellersPage> {
             ),
           );
         } else if (snapshot.hasData) {
-          List myGroceries = snapshot.data?.docs ?? [];
-          if (myGroceries.isEmpty) {
+          List myGroceries = (snapshot.data?.docs) ?? [];
+          List checkedGroceries = myGroceries
+              .where((element) => element.data().count >= 1)
+              .toList();
+          if (checkedGroceries.isEmpty) {
             return const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                'No Groceries Available',
+                'No Groceries Available.\nTry Changing Pick Up Location',
                 style: TextStyle(fontSize: 20.0),
                 textAlign: TextAlign.center,
               ),
             );
           } else {
             return ListView.builder(
-              itemCount: myGroceries.length,
+              itemCount: checkedGroceries.length,
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
-                GroceryModel grocery = myGroceries[index].data();
-                return grocery.count >= 1
-                    ? Grocery(
-                        grocery: grocery,
-                        selling: true,
-                      )
-                    : const SizedBox(width: 0, height: 0);
+                GroceryModel grocery = checkedGroceries[index].data();
+                return Grocery(
+                  grocery: grocery,
+                  selling: true,
+                );
               },
             );
           }

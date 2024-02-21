@@ -48,12 +48,11 @@ class _GroceryState extends State<Grocery> {
       setState(() {});
     }
 
-    void addToCart(context) {}
-
     const double radius = 30.0;
     final String expiresAt = timeStampToDateTime(widget.grocery.expireDate);
     final int price = widget.grocery.price;
     final String count = widget.grocery.count.toString();
+
     return GestureDetector(
       onTap: widget.selling
           ? displayGroceryAddtoCartModal

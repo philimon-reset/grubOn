@@ -1,8 +1,6 @@
 import "package:firebase_core/firebase_core.dart";
 import 'package:foodbridge/auth_service/models/filter_provider.dart';
 import 'package:foodbridge/pages/auth/auth_page.dart';
-import 'package:foodbridge/pages/home/home_page.dart';
-import 'package:foodbridge/pages/home/profile_page.dart';
 import 'package:provider/provider.dart';
 import "firebase_options.dart";
 import "package:flutter/material.dart";

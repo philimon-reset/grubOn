@@ -6,7 +6,6 @@ import "package:foodbridge/auth_service/models/user_model.dart";
 import 'package:foodbridge/components/util_components/my_button.dart';
 import 'package:foodbridge/components/field_components/my_textfield.dart';
 import 'package:foodbridge/components/util_components/show_error.dart';
-import 'package:foodbridge/components/util_components/squareTile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -56,10 +55,9 @@ class _RegisterPageState extends State<RegisterPage> {
       // check if password and confirm password is the same
       if (userPasswordController.text == confirmPasswordController.text) {
         // create user
-        final credential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text.trim(),
-                password: userPasswordController.text.trim());
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text.trim(),
+            password: userPasswordController.text.trim());
 
         // add user details
         UserModel user = UserModel(

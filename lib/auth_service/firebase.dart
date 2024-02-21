@@ -83,7 +83,6 @@ class DatabaseService {
     Query query = _groceryRef
         .where("sellable", isEqualTo: true)
         .where("userEmail", isNotEqualTo: currentUser?.email);
-    print(pickups);
     if (pickups.isNotEmpty) {
       query = _groceryRef.where("pickup", whereIn: pickups);
     }

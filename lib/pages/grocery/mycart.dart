@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/grocery_model.dart';
 import 'package:foodbridge/auth_service/models/transaction_model.dart';
 import 'package:foodbridge/auth_service/models/user_model.dart';
 import 'package:foodbridge/components/grocery/cart_card.dart';
-import 'package:provider/provider.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});
@@ -63,10 +60,6 @@ class _MyCartState extends State<MyCart> {
       } catch (e) {
         print("Error on: ${e}");
       }
-    }
-
-    initState() {
-      super.initState();
     }
 
     return Scaffold(
