@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/pickup_model.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/pickup_model.dart';
 
 class SelectGroceryType extends StatefulWidget {
   final TextEditingController typeController;

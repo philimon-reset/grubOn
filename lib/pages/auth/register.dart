@@ -1,11 +1,11 @@
 import "package:cloud_firestore/cloud_firestore.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
-import "package:foodbridge/auth_service/firebase.dart";
-import "package:foodbridge/auth_service/models/user_model.dart";
-import 'package:foodbridge/components/util_components/my_button.dart';
-import 'package:foodbridge/components/field_components/my_textfield.dart';
-import 'package:foodbridge/components/util_components/show_error.dart';
+import "package:grubOn/auth_service/firebase.dart";
+import "package:grubOn/auth_service/models/user_model.dart";
+import 'package:grubOn/components/util_components/my_button.dart';
+import 'package:grubOn/components/field_components/my_textfield.dart';
+import 'package:grubOn/components/util_components/show_error.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterPage extends StatefulWidget {

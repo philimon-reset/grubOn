@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:254032794739:android:8d7e6111ff1a2a6e7cc606",
         "android_client_info": {
-          "package_name": "foodbridge.com.foodbridge"
+          "package_name": "grubOn.com.grubOn"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "254032794739-b44hvrl5htsle9l1mt28kgcelndqhtoa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "foodbridge.com.foodbridge.RunnerTests"
+                "bundle_id": "grubOn.com.grubOn.RunnerTests"
               }
             }
           ]

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/components/field_components/date_field.dart';
-import 'package:foodbridge/components/field_components/text_box.dart';
-import 'package:foodbridge/components/grocery/select_type.dart';
+import 'package:grubOn/components/field_components/date_field.dart';
+import 'package:grubOn/components/field_components/text_box.dart';
+import 'package:grubOn/components/grocery/select_type.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GroceryFields extends StatefulWidget {

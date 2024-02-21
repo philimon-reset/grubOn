@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/components/field_components/password_box.dart';
-import 'package:foodbridge/components/field_components/text_box.dart';
+import 'package:grubOn/components/field_components/password_box.dart';
+import 'package:grubOn/components/field_components/text_box.dart';
 
 class ProfileTextFields extends StatelessWidget {
   final TextEditingController email;

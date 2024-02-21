@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/filter_provider.dart';
-import 'package:foodbridge/auth_service/models/pickup_model.dart';
-import 'package:foodbridge/util/helpers.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/filter_provider.dart';
+import 'package:grubOn/auth_service/models/pickup_model.dart';
+import 'package:grubOn/util/helpers.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:provider/provider.dart';

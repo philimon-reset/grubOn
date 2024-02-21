@@ -1,5 +1,5 @@
-name: foodbridge
-description: "A new Flutter project."
+name: grubOn
+description: "An application that aims to help remove food waste in local communities"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
@@ -49,7 +49,9 @@ dependencies:
   provider: ^6.1.1
   google_maps_flutter:
   location:
-  firebase_storage: 
+  firebase_storage:
+  image_picker:
+  tflite_flutter:
 
 dev_dependencies:
   flutter_test:

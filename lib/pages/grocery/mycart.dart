@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/transaction_model.dart';
-import 'package:foodbridge/auth_service/models/user_model.dart';
-import 'package:foodbridge/components/grocery/cart_card.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/transaction_model.dart';
+import 'package:grubOn/auth_service/models/user_model.dart';
+import 'package:grubOn/components/grocery/cart_card.dart';
 
 class MyCart extends StatefulWidget {
   const MyCart({super.key});

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/user_model.dart';
-import 'package:foodbridge/components/home_components/profile_fields.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/user_model.dart';
+import 'package:grubOn/components/home_components/profile_fields.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

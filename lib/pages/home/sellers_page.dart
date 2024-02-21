@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/filter_provider.dart';
-import 'package:foodbridge/auth_service/models/grocery_model.dart';
-import 'package:foodbridge/components/grocery/grocery_card.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/filter_provider.dart';
+import 'package:grubOn/auth_service/models/grocery_model.dart';
+import 'package:grubOn/components/grocery/grocery_card.dart';
 import 'package:provider/provider.dart';
 
 class SellersPage extends StatefulWidget {

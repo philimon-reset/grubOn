@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "foodbridge.com" "\0"
-            VALUE "FileDescription", "foodbridge" "\0"
+            VALUE "CompanyName", "grubOn.com" "\0"
+            VALUE "FileDescription", "grubOn" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "foodbridge" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2024 foodbridge.com. All rights reserved." "\0"
-            VALUE "OriginalFilename", "foodbridge.exe" "\0"
-            VALUE "ProductName", "foodbridge" "\0"
+            VALUE "InternalName", "grubOn" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 grubOn.com. All rights reserved." "\0"
+            VALUE "OriginalFilename", "grubOn.exe" "\0"
+            VALUE "ProductName", "grubOn" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

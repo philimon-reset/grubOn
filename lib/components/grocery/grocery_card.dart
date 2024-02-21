@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/grocery_model.dart';
-import 'package:foodbridge/pages/grocery/addToCart.dart';
-import 'package:foodbridge/pages/grocery/update_grocery.dart';
-import 'package:foodbridge/util/helpers.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/grocery_model.dart';
+import 'package:grubOn/pages/grocery/addToCart.dart';
+import 'package:grubOn/pages/grocery/update_grocery.dart';
+import 'package:grubOn/util/helpers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Grocery extends StatefulWidget {

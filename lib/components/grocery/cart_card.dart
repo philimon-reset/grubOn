@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/firebase.dart';
 import 'package:provider/provider.dart';
 
 class CartItem extends StatefulWidget {

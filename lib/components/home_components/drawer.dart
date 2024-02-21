@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodbridge/components/util_components/my_list_tile.dart';
+import 'package:grubOn/components/util_components/my_list_tile.dart';
 
 class MyTools extends StatelessWidget {
   final void Function() signUserOut;

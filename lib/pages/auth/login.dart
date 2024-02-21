@@ -2,9 +2,9 @@
 
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/material.dart";
-import 'package:foodbridge/components/util_components/my_button.dart';
-import 'package:foodbridge/components/field_components/my_textfield.dart';
-import 'package:foodbridge/components/util_components/squareTile.dart';
+import 'package:grubOn/components/util_components/my_button.dart';
+import 'package:grubOn/components/field_components/my_textfield.dart';
+import 'package:grubOn/components/util_components/squareTile.dart';
 import "package:google_fonts/google_fonts.dart";
 
 class LoginPage extends StatefulWidget {

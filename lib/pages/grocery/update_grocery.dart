@@ -2,12 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:foodbridge/auth_service/firebase.dart';
-import 'package:foodbridge/auth_service/models/grocery_model.dart';
-import 'package:foodbridge/auth_service/models/user_model.dart';
-import 'package:foodbridge/components/grocery/grocery_fields.dart';
-import 'package:foodbridge/components/util_components/show_error.dart';
-import 'package:foodbridge/util/helpers.dart';
+import 'package:grubOn/auth_service/firebase.dart';
+import 'package:grubOn/auth_service/models/grocery_model.dart';
+import 'package:grubOn/auth_service/models/user_model.dart';
+import 'package:grubOn/components/grocery/grocery_fields.dart';
+import 'package:grubOn/components/util_components/show_error.dart';
+import 'package:grubOn/util/helpers.dart';
 
 class UpdateGrocery extends StatefulWidget {
   final GroceryModel grocery;

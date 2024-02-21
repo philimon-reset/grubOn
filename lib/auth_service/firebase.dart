@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:foodbridge/auth_service/models/grocery_model.dart';
-import 'package:foodbridge/auth_service/models/pickup_model.dart';
-import 'package:foodbridge/auth_service/models/transaction_model.dart';
-import 'package:foodbridge/auth_service/models/user_model.dart';
+import 'package:grubOn/auth_service/models/grocery_model.dart';
+import 'package:grubOn/auth_service/models/pickup_model.dart';
+import 'package:grubOn/auth_service/models/transaction_model.dart';
+import 'package:grubOn/auth_service/models/user_model.dart';
 
 // ignore: constant_identifier_names
 const String USER_MODEL_REF = "Users";
