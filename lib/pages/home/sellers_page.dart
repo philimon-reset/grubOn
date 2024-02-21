@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
+import 'package:foodbridge/auth_service/models/filter_provider.dart';
 import 'package:foodbridge/auth_service/models/grocery_model.dart';
 import 'package:foodbridge/components/grocery/grocery_card.dart';
+import 'package:provider/provider.dart';
 
 class SellersPage extends StatefulWidget {
   const SellersPage({super.key});
@@ -16,8 +18,9 @@ class _SellersPageState extends State<SellersPage> {
 
   @override
   Widget build(BuildContext context) {
+    List pickUps = context.watch<FilterModel>().filters;
     return StreamBuilder(
-      stream: _databaseService.getSellableGroceries(),
+      stream: _databaseService.getSellableGroceries(pickUps),
       builder: sellerBuild,
     );
   }

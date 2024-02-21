@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:foodbridge/auth_service/models/grocery_model.dart';
+import 'package:foodbridge/auth_service/models/pickup_model.dart';
 import 'package:foodbridge/auth_service/models/transaction_model.dart';
 import 'package:foodbridge/auth_service/models/user_model.dart';
 
@@ -8,6 +9,7 @@ import 'package:foodbridge/auth_service/models/user_model.dart';
 const String USER_MODEL_REF = "Users";
 const String GROCERY_MODEL_REF = "Groceries";
 const String TRANSACTION_MODEL_REF = "Transactions";
+const String PICKUP_MODEL_REF = "PickUp";
 
 class DatabaseService {
   final _firestore = FirebaseFirestore.instance;
@@ -16,6 +18,7 @@ class DatabaseService {
   late final CollectionReference _userRef;
   late final CollectionReference _groceryRef;
   late final CollectionReference _transactionRef;
+  late final CollectionReference _pickupRef;
 
   DatabaseService() {
     _userRef = _firestore.collection(USER_MODEL_REF).withConverter<UserModel>(
@@ -37,6 +40,13 @@ class DatabaseService {
               return TransactionModel.fromJson(snapshot.data()!);
             },
             toFirestore: (TransactionModel value, _) => value.toJson());
+
+    _pickupRef =
+        _firestore.collection(PICKUP_MODEL_REF).withConverter<PickUpModel>(
+            fromFirestore: (snapshot, options) {
+              return PickUpModel.fromJson(snapshot.data()!);
+            },
+            toFirestore: (PickUpModel value, _) => value.toJson());
   }
 
   // get user details
@@ -69,11 +79,15 @@ class DatabaseService {
         .snapshots();
   }
 
-  Stream<QuerySnapshot> getSellableGroceries() {
-    return _groceryRef
+  Stream<QuerySnapshot> getSellableGroceries(List pickups) {
+    Query query = _groceryRef
         .where("sellable", isEqualTo: true)
-        .where("userEmail", isNotEqualTo: currentUser?.email)
-        .snapshots();
+        .where("userEmail", isNotEqualTo: currentUser?.email);
+    print(pickups);
+    if (pickups.isNotEmpty) {
+      query = _groceryRef.where("pickup", whereIn: pickups);
+    }
+    return query.snapshots();
   }
 
   void updateSoldGroceries(List myItems) async {
@@ -137,5 +151,9 @@ class DatabaseService {
 
   void addTransaction(TransactionModel transaction) {
     _transactionRef.add(transaction);
+  }
+
+  Future<QuerySnapshot> getPickUpLocations() {
+    return _pickupRef.get();
   }
 }

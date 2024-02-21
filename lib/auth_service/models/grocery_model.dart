@@ -6,8 +6,11 @@ class GroceryModel {
   final String name;
   final String? photo;
   final bool sellable;
+  final bool sold;
+
   final int price;
   final String type;
+  final String pickup;
   final int count;
   final Timestamp postDate;
   final Timestamp expireDate;
@@ -19,8 +22,10 @@ class GroceryModel {
       required this.userEmail,
       required this.count,
       required this.name,
+      required this.pickup,
       this.photo,
       required this.sellable,
+      required this.sold,
       required this.price,
       required this.type,
       required this.postDate,
@@ -28,11 +33,13 @@ class GroceryModel {
 
   GroceryModel.fromJson(Map<String, dynamic> json)
       : about = json['about'],
+        pickup = json['pickup'],
         id = json['id'],
         userEmail = json['userEmail'],
         name = json['name'],
         photo = json['photo'],
         sellable = json['sellable'],
+        sold = json['sold'],
         price = json['price'],
         type = json['type'],
         postDate = json['postDate'],
@@ -43,10 +50,12 @@ class GroceryModel {
     return {
       'id': id,
       'about': about,
+      'pickup': pickup,
       'name': name,
       'userEmail': userEmail,
       'photo': photo,
       'sellable': sellable,
+      'sold': sold,
       'price': price,
       'type': type,
       'postDate': postDate,
@@ -64,9 +73,13 @@ class GroceryModel {
       int? price,
       String? type,
       Timestamp? postDate,
+      String? pickup,
       Timestamp? expireDate,
+      bool? sold,
       int? count}) {
     return GroceryModel(
+      pickup: pickup ?? this.pickup,
+      sold: sold ?? this.sold,
       id: id,
       userEmail: userEmail ?? this.userEmail,
       count: count ?? this.count,

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:foodbridge/auth_service/firebase.dart';
+import 'package:foodbridge/auth_service/models/pickup_model.dart';
 import 'package:foodbridge/components/field_components/text_box.dart';
 
 class SelectGroceryType extends StatefulWidget {
   final TextEditingController typeController;
+  final TextEditingController pickupController;
   final bool readOnly;
   const SelectGroceryType(
-      {super.key, required this.typeController, required this.readOnly});
+      {super.key,
+      required this.typeController,
+      required this.readOnly,
+      required this.pickupController});
 
   @override
   State<SelectGroceryType> createState() => _SelectGroceryTypeState();
@@ -23,6 +28,12 @@ class _SelectGroceryTypeState extends State<SelectGroceryType> {
     return result["types"];
   }
 
+  // get pickup locations
+  Future<List> getPickUps() async {
+    final result = (await _databaseService.getPickUpLocations());
+    return result.docs;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -30,48 +41,104 @@ class _SelectGroceryTypeState extends State<SelectGroceryType> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: getTypes(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List types = snapshot.data ?? [];
-            return Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: DropdownMenu(
-                  enabled: widget.readOnly ? false : true,
-                  initialSelection: widget.typeController.text,
-                  requestFocusOnTap: true,
-                  leadingIcon: const Icon(Icons.search),
-                  width: 340,
-                  inputDecorationTheme: InputDecorationTheme(
-                      disabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red.shade200),
-                          borderRadius: BorderRadius.circular(12)),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey.shade300),
-                          borderRadius: BorderRadius.circular(12)),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey.shade600),
-                          borderRadius: BorderRadius.circular(12))),
-                  label: const Text("Select Grocery Type"),
-                  dropdownMenuEntries: types
-                      .map((e) => DropdownMenuEntry(value: e, label: e))
-                      .toList(),
-                  enableFilter: true,
-                  onSelected: (value) {
-                    if (value != null) {
-                      setState(() {
-                        widget.typeController.text = value;
-                      });
-                    }
-                  }),
-            );
-          } else if (snapshot.hasError) {
-            final error = snapshot.error;
-            return Text("We have the error: $error");
-          } else {
-            return const Center(child: Text("No Types"));
-          }
-        });
+    return Column(
+      children: [
+        FutureBuilder(
+            future: getPickUps(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<PickUpModel> pickups = (snapshot.data
+                        ?.map<PickUpModel>((e) => e.data()))?.toList() ??
+                    [];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: DropdownMenu(
+                      enabled: widget.readOnly ? false : true,
+                      initialSelection: widget.pickupController.text,
+                      requestFocusOnTap: true,
+                      leadingIcon: const Icon(Icons.search),
+                      width: 340,
+                      inputDecorationTheme: InputDecorationTheme(
+                          disabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red.shade200),
+                              borderRadius: BorderRadius.circular(12)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade300),
+                              borderRadius: BorderRadius.circular(12)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade600),
+                              borderRadius: BorderRadius.circular(12))),
+                      label: const Text("Select Pick up location"),
+                      dropdownMenuEntries: pickups
+                          .map((e) =>
+                              DropdownMenuEntry(value: e.name, label: e.name))
+                          .toList(),
+                      enableFilter: true,
+                      onSelected: (value) {
+                        if (value != null) {
+                          setState(() {
+                            widget.pickupController.text = value;
+                          });
+                        }
+                      }),
+                );
+              } else if (snapshot.hasError) {
+                final error = snapshot.error;
+                return Text("We have the error: $error");
+              } else {
+                return const Center(child: Text("No Pick Up Location found"));
+              }
+            }),
+        FutureBuilder(
+            future: getTypes(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List types = snapshot.data ?? [];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: DropdownMenu(
+                      enabled: widget.readOnly ? false : true,
+                      initialSelection: widget.typeController.text,
+                      requestFocusOnTap: true,
+                      leadingIcon: const Icon(Icons.search),
+                      width: 340,
+                      inputDecorationTheme: InputDecorationTheme(
+                          disabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.red.shade200),
+                              borderRadius: BorderRadius.circular(12)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade300),
+                              borderRadius: BorderRadius.circular(12)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.grey.shade600),
+                              borderRadius: BorderRadius.circular(12))),
+                      label: const Text("Select Grocery Type"),
+                      dropdownMenuEntries: types
+                          .map((e) => DropdownMenuEntry(value: e, label: e))
+                          .toList(),
+                      enableFilter: true,
+                      onSelected: (value) {
+                        if (value != null) {
+                          setState(() {
+                            widget.typeController.text = value;
+                          });
+                        }
+                      }),
+                );
+              } else if (snapshot.hasError) {
+                final error = snapshot.error;
+                return Text("We have the error: $error");
+              } else {
+                return const Center(child: Text("No Types"));
+              }
+            }),
+      ],
+    );
   }
 }

@@ -25,6 +25,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
   final typeController = TextEditingController();
   final expireDateController = TextEditingController();
   final priceController = TextEditingController();
+  final pickupController = TextEditingController();
 
   // other variables
   ValueNotifier<bool> isSellable = ValueNotifier<bool>(false);
@@ -41,6 +42,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
     currentUser = document.docs.first.data() as UserModel;
     aboutController.text = widget.grocery.about;
     nameController.text = widget.grocery.name;
+    pickupController.text = widget.grocery.pickup;
     photoController.text = widget.grocery.photo ?? "";
     typeController.text = widget.grocery.type;
     expireDateController.text = timeStampToDateTime(widget.grocery.expireDate);
@@ -61,6 +63,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
       'name': nameController.text,
       'price': priceController.text,
       'type': typeController.text,
+      'pickup': pickupController.text,
       'expireDate': expireDateController.text,
     };
     if (requiredInputs.containsValue("")) {
@@ -102,6 +105,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
         DateTime expireDate = DateTime.parse(expireDateController.text);
         GroceryModel newGrocery = widget.grocery.copyWith(
             count: counter.value,
+            pickup: pickupController.text.trim(),
             about: aboutController.text.trim(),
             name: nameController.text.trim(),
             sellable: isSellable.value,
@@ -155,6 +159,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
         body: ListView(
           children: [
             GroceryFields(
+                pickupController: pickupController,
                 totalCount: counter.value,
                 aboutController: aboutController,
                 nameController: nameController,

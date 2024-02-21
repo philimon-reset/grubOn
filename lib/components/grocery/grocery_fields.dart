@@ -10,6 +10,7 @@ class GroceryFields extends StatefulWidget {
   final TextEditingController priceController;
   final TextEditingController expireDateController;
   final TextEditingController typeController;
+  final TextEditingController pickupController;
   final Function()? callback;
   final bool? notCartPage;
   final ValueNotifier<bool> isSellable;
@@ -30,6 +31,7 @@ class GroceryFields extends StatefulWidget {
     required this.counter,
     this.notCartPage = true,
     required this.totalCount,
+    required this.pickupController,
   });
 
   @override
@@ -79,9 +81,6 @@ class _GroceryFieldsState extends State<GroceryFields> {
         builder: (context, value, child) {
           return Column(
             children: [
-              const SizedBox(
-                height: 8,
-              ),
               CircleAvatar(
                 backgroundColor: Colors.black,
                 radius: 55,
@@ -99,9 +98,9 @@ class _GroceryFieldsState extends State<GroceryFields> {
                 height: 25,
               ),
               SelectGroceryType(
-                readOnly: widget.readOnly.value,
-                typeController: widget.typeController,
-              ),
+                  readOnly: widget.readOnly.value,
+                  typeController: widget.typeController,
+                  pickupController: widget.pickupController),
               MyTextBox(
                 controller: widget.nameController,
                 hintText: "Name",
@@ -147,7 +146,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
               Padding(
                 padding: const EdgeInsets.all(6),
                 child: SizedBox(
-                  height: 150,
+                  height: 100,
                   child: TextField(
                     readOnly: widget.readOnly.value,
                     expands: true,
@@ -195,7 +194,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

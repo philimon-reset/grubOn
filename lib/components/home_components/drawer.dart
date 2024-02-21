@@ -3,17 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:foodbridge/components/util_components/my_list_tile.dart';
 
 class MyTools extends StatelessWidget {
-  final void Function()? signUserOut;
-  final void Function()? profilePage;
+  final void Function() signUserOut;
+  final void Function() profilePage;
+  final void Function() freshCheck;
   const MyTools(
-      {super.key, required this.signUserOut, required this.profilePage});
+      {super.key,
+      required this.signUserOut,
+      required this.profilePage,
+      required this.freshCheck});
 
   @override
   Widget build(BuildContext context) {
     // current user
     final currentUser = FirebaseAuth.instance.currentUser!;
     return Drawer(
-      width: 200,
+      width: 240,
       backgroundColor: const Color.fromARGB(255, 78, 180, 179),
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -50,6 +54,10 @@ class MyTools extends StatelessWidget {
               text: "P R O F I L E",
               onTap: profilePage,
             ),
+            MyListTile(
+                icon: Icons.camera,
+                text: "F R E S H N E S S\nC H E C K",
+                onTap: freshCheck)
           ],
         ),
         // log out

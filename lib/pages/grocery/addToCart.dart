@@ -24,6 +24,7 @@ class _AddToCartState extends State<AddToCard> {
   final typeController = TextEditingController();
   final expireDateController = TextEditingController();
   final priceController = TextEditingController();
+  final pickupController = TextEditingController();
 
   // other variables
   ValueNotifier<bool> readOnly = ValueNotifier<bool>(true);
@@ -40,6 +41,7 @@ class _AddToCartState extends State<AddToCard> {
     currentUser = document.docs.first.data() as UserModel;
     aboutController.text = widget.grocery.about;
     nameController.text = widget.grocery.name;
+    pickupController.text = widget.grocery.pickup;
     photoController.text = widget.grocery.photo ?? "";
     typeController.text = widget.grocery.type;
     expireDateController.text = timeStampToDateTime(widget.grocery.expireDate);
@@ -106,6 +108,7 @@ class _AddToCartState extends State<AddToCard> {
         body: ListView(
           children: [
             GroceryFields(
+                pickupController: pickupController,
                 totalCount: widget.grocery.count,
                 notCartPage: false,
                 aboutController: aboutController,

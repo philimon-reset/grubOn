@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:foodbridge/auth_service/models/filter_provider.dart';
 import 'package:foodbridge/components/home_components/drawer.dart';
 import 'package:foodbridge/pages/grocery/add_grocery.dart';
 import 'package:foodbridge/pages/grocery/mycart.dart';
 import 'package:foodbridge/pages/home/grocery_page.dart';
 import 'package:foodbridge/pages/home/profile_page.dart';
 import 'package:foodbridge/pages/home/sellers_page.dart';
+import 'package:foodbridge/pages/others/fresh_check.dart';
 import 'package:foodbridge/pages/others/map_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,6 +31,13 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const ProfilePage()));
+  }
+
+  // go to fresh Checker
+  void freshCheck() {
+    Navigator.pop(context);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const FreshCheck()));
   }
 
 // current index of page
@@ -67,7 +77,11 @@ class _HomePageState extends State<HomePage> {
             _selectedIndex == 0 ? Icons.add : Icons.map,
             color: Colors.white,
           )),
-      drawer: MyTools(profilePage: goToProfilePage, signUserOut: signUserOut),
+      drawer: MyTools(
+        profilePage: goToProfilePage,
+        signUserOut: signUserOut,
+        freshCheck: freshCheck,
+      ),
       appBar: AppBar(
         titleTextStyle: GoogleFonts.roboto(
           color: Colors.black,
@@ -76,8 +90,13 @@ class _HomePageState extends State<HomePage> {
         title: const Center(child: Text("Home")),
         actions: [
           IconButton(
+            icon: const Icon(Icons.remove),
+            tooltip: 'Clear Filter',
+            onPressed: () => context.read<FilterModel>().removeFilters(),
+          ),
+          IconButton(
             icon: const Icon(Icons.shopping_cart),
-            tooltip: 'Map',
+            tooltip: 'Shopping Cart',
             onPressed: displayShoppingCart,
           )
         ],

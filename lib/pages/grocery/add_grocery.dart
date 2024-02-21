@@ -23,6 +23,7 @@ class _AddGroceryState extends State<AddGrocery> {
   final photoController = TextEditingController();
   final priceController = TextEditingController();
   final typeController = TextEditingController();
+  final pickupController = TextEditingController();
   final expireDateController = TextEditingController();
 
   // set up database Services
@@ -45,6 +46,7 @@ class _AddGroceryState extends State<AddGrocery> {
     photoController.dispose();
     priceController.dispose();
     typeController.dispose();
+    pickupController.dispose();
     expireDateController.dispose();
     super.dispose();
   }
@@ -66,6 +68,7 @@ class _AddGroceryState extends State<AddGrocery> {
       'name': nameController.text,
       'price': priceController.text,
       'type': typeController.text,
+      'pickUp': pickupController.text,
       'expireDate': expireDateController.text,
     };
     if (requiredInputs.containsValue("")) {
@@ -106,6 +109,7 @@ class _AddGroceryState extends State<AddGrocery> {
         DateTime expireDate = DateTime.parse(expireDateController.text);
         Uuid uuid = const Uuid();
         GroceryModel newGrocery = GroceryModel(
+            sold: false,
             id: uuid.v4(),
             userEmail: currentUser.email,
             count: counter.value,
@@ -114,6 +118,7 @@ class _AddGroceryState extends State<AddGrocery> {
             sellable: isSellable.value,
             price: int.parse(priceController.text),
             type: typeController.text,
+            pickup: pickupController.text,
             postDate: Timestamp.now(),
             expireDate: Timestamp.fromDate(
                 DateTime(expireDate.year, expireDate.month, expireDate.day)));
@@ -149,6 +154,7 @@ class _AddGroceryState extends State<AddGrocery> {
         GroceryFields(
           totalCount: counter.value,
           typeController: typeController,
+          pickupController: pickupController,
           aboutController: aboutController,
           nameController: nameController,
           priceController: priceController,

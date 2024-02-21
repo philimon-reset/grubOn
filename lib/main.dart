@@ -1,7 +1,9 @@
 import "package:firebase_core/firebase_core.dart";
+import 'package:foodbridge/auth_service/models/filter_provider.dart';
 import 'package:foodbridge/pages/auth/auth_page.dart';
 import 'package:foodbridge/pages/home/home_page.dart';
 import 'package:foodbridge/pages/home/profile_page.dart';
+import 'package:provider/provider.dart';
 import "firebase_options.dart";
 import "package:flutter/material.dart";
 import 'package:google_fonts/google_fonts.dart';
@@ -28,14 +30,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: _buildTheme(Brightness.light),
-      title: 'Flutter',
-      home: const AuthPage(),
-      routes: {
-        "/home/": (context) => const HomePage(),
-        "/profile/": (context) => const ProfilePage()
-      },
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (context) => FilterModel())],
+      child: MaterialApp(
+        theme: _buildTheme(Brightness.light),
+        title: 'Flutter',
+        home: const AuthPage(),
+      ),
     );
   }
 }
