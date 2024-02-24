@@ -1,6 +1,15 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:tflite_flutter/tflite_flutter.dart';
+import 'package:image/image.dart' as img;
+
+const modelAsset =
+    "lib/util/fruitFreshnessModel/Models/fruitFreshnessModel.tflite";
+const labelAsset = "lib/util/fruitFreshnessModel/Models/labels.txt";
 
 String timeStampToDateTime(Timestamp value) {
   final DateTime tsdate = value.toDate();
@@ -37,4 +46,63 @@ Future<LatLng> getUserLocationPermission(
     }
   });
   return currentP;
+}
+
+Future<void> checkFresh(File input) async {
+  imageProcessor(input);
+}
+
+Future<void> initTensorFlow() async {
+  // model: "lib/util/fruitFreshnessModel/Models/fruitFreshnessModel.tflite",
+  // labels: "lib/util/fruitFreshnessModel/Models/labels.txt",
+}
+
+/// Load tflite model from assets
+Future<void> loadModel() async {
+  print('Loading interpreter options...');
+  final interpreterOptions = InterpreterOptions();
+
+  if (Platform.isAndroid) {
+    interpreterOptions.addDelegate(XNNPackDelegate());
+  }
+
+  print('Loading interpreter...');
+  final _interpreter =
+      await Interpreter.fromAsset(modelAsset, options: interpreterOptions);
+}
+
+/// Load Labels from assets
+Future<void> loadLabels() async {
+  print('Loading labels...');
+  final labelsRaw = await rootBundle.loadString(labelAsset);
+  final _labels = labelsRaw.split('\n');
+}
+
+List imageProcessor(File imageCurrent) {
+  // Reading image bytes from file
+  final imageData = imageCurrent.readAsBytesSync();
+
+// Decoding image
+  final image = img.decodeImage(imageData);
+
+// Resizing image fpr model, [300, 300]
+  final imageInput = img.copyResize(
+    image!,
+    width: 300,
+    height: 300,
+  );
+
+// Creating matrix representation, [300, 300, 3]
+  final imageMatrix = List.generate(
+    imageInput.height,
+    (y) => List.generate(
+      imageInput.width,
+      (x) {
+        final pixel = imageInput.getPixel(x, y);
+        return [pixel, pixel, pixel];
+      },
+    ),
+  );
+  print(imageMatrix);
+  return imageMatrix;
 }

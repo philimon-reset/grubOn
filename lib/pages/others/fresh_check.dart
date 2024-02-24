@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:grubOn/util/helpers.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FreshCheck extends StatefulWidget {
@@ -64,7 +65,7 @@ class _FreshCheckState extends State<FreshCheck> {
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.grey.shade400),
                     child: const Center(
-                      child: Text("Check the item is fresh"),
+                      child: Text("Check if the item is fresh"),
                     ),
                   ),
                   Container(
@@ -73,7 +74,7 @@ class _FreshCheckState extends State<FreshCheck> {
                     child: IconButton(
                       icon: const Icon(Icons.check),
                       color: Colors.white,
-                      onPressed: () => Navigator.pop(context),
+                      onPressed: () => checkFresh(imageFile!),
                     ),
                   ),
                 ],
