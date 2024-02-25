@@ -132,7 +132,7 @@ class _AddToCartState extends State<AddToCard> {
                   padding: const EdgeInsets.only(
                       bottom: 20, top: 20, left: 80, right: 80),
                   foregroundColor: Colors.white,
-                  backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   textStyle: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,

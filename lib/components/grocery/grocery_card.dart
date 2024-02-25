@@ -121,7 +121,7 @@ class _GroceryState extends State<Grocery> {
                             style: GoogleFonts.karla(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
-                                color: Color(0xFF4EB4B3)))
+                                color: Theme.of(context).colorScheme.primary))
                       ]),
                 ),
                 Expanded(
@@ -144,7 +144,7 @@ class _GroceryState extends State<Grocery> {
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromARGB(255, 165, 165, 165)),
+                              color: Color.fromRGBO(165, 165, 165, 1)),
                           child: int.parse(count) >= 1
                               ? Text("$count left",
                                   style: GoogleFonts.karla(

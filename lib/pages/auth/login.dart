@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
           return AlertDialog(
             title: const Text("An error occurred",
                 style: TextStyle(color: Colors.white)),
-            backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             content: Text(
               text,
               style: const TextStyle(color: Colors.white),

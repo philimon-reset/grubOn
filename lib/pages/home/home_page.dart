@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
           onPressed:
               _selectedIndex == 0 ? _displayGroceryAddModal : _displayMapFilter,
-          backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+          backgroundColor: Theme.of(context).colorScheme.primary,
           child: Icon(
             _selectedIndex == 0 ? Icons.add : Icons.map,
             color: Colors.white,
@@ -101,19 +101,19 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      backgroundColor: Color.fromARGB(255, 78, 180, 179),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       body: Container(
-        padding: EdgeInsets.only(bottom: 6),
-        decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
+        padding: const EdgeInsets.only(bottom: 6),
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+            borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(30),
                 bottomRight: Radius.circular(30))),
         child: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       ),
       bottomNavigationBar: GNav(
           selectedIndex: _selectedIndex,
-          backgroundColor: Color.fromARGB(255, 78, 180, 179),
+          backgroundColor: Theme.of(context).colorScheme.primary,
           gap: 10,
           activeColor: Colors.grey.shade200,
           hoverColor: Colors.grey.shade400,

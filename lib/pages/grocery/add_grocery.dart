@@ -175,7 +175,7 @@ class _AddGroceryState extends State<AddGrocery> {
                   borderRadius: BorderRadius.circular(20)),
               padding: const EdgeInsets.only(bottom: 20, top: 20),
               foregroundColor: Colors.white,
-              backgroundColor: Color(0xFF4EB4B3),
+              backgroundColor: Theme.of(context).colorScheme.primary,
               textStyle: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,

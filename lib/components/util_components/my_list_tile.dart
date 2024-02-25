@@ -23,7 +23,7 @@ class MyListTile extends StatelessWidget {
         ),
         title: Text(
           text,
-          style: TextStyle(color: const Color.fromARGB(255, 255, 255, 255)),
+          style: TextStyle(color: Color(0xFFFFFFFF)),
         ),
       ),
     );

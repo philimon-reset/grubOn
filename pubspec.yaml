@@ -53,6 +53,7 @@ dependencies:
   image_picker:
   tflite_flutter:
   image:
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:

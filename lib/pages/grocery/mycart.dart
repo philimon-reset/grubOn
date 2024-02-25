@@ -68,8 +68,9 @@ class _MyCartState extends State<MyCart> {
         actions: [
           Container(
             width: 80,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: Color(0xFF4EB4B3)),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Theme.of(context).colorScheme.primary),
             child: IconButton(
               onPressed: checkOut,
               icon: const Icon(Icons.check),

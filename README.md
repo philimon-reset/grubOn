@@ -37,6 +37,47 @@ Coming Soon:
 
 # Installation
 
+## Prerequisites
+
+- Flutter SDK: https://flutter.dev/docs/get-started/install
+- Android Studio or Visual Studio Code (with Flutter plugin) for development
+- Clone the Repository
+
+## Set Up Firebase
+
+- Add firebase to your system using https://firebase.google.com/docs/flutter/setup?platform=android
+- Create a Firebase project at https://console.firebase.google.com/
+- Enable the following Firebase services: Authentication and Firestore.
+- Download the GoogleServiceInfo.json file (for Android).
+- Open android/app/src/production/ and put the google-services.json there.
+- run
+
+```
+flutter run --flavor production
+```
+
+## Install Dependencies
+
+- run
+
+```
+cd ./grubOn/
+flutter pub get
+```
+
+## Configure Google Maps
+
+- Follow the instructions at https://mapsplatform.google.com/ to obtain a Google Maps API key and configure it in your project.
+
+## Running the Project
+
+- Connect your Android device or iOS simulator to your development environment.
+- Run the following command in your terminal:
+
+```
+flutter run
+```
+
 # Demo and Screenshots
 
 <img src="./1.png" width="665" height="999"/>

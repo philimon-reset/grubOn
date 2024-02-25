@@ -16,7 +16,7 @@ class MyTools extends StatelessWidget {
     // current user
     return Drawer(
       width: 240,
-      backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+      backgroundColor: Theme.of(context).colorScheme.primary,
       child:
           Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         // home

@@ -16,7 +16,7 @@ class MyButton extends StatelessWidget {
             padding:
                 EdgeInsets.only(bottom: 20, left: 100, right: 100, top: 20),
             foregroundColor: Colors.white,
-            backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+            backgroundColor: Theme.of(context).colorScheme.primary,
             textStyle: const TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
@@ -28,15 +28,3 @@ class MyButton extends StatelessWidget {
     );
   }
 }
-
-// Container(
-//           padding: const EdgeInsets.all(20),
-//           margin: const EdgeInsets.symmetric(horizontal: 20),
-//           decoration: BoxDecoration(
-//               color: Colors.black, borderRadius: BorderRadius.circular(8)),
-//           child: Text(
-//             buttonName,
-//             style: const TextStyle(
-//                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-//           ),
-//         )

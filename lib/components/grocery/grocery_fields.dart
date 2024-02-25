@@ -177,7 +177,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                         return Switch(
                           thumbIcon: thumbIcon,
                           value: widget.isSellable.value,
-                          activeColor: const Color.fromARGB(255, 78, 180, 179),
+                          activeColor: Theme.of(context).colorScheme.primary,
                           onChanged: widget.readOnly.value
                               ? (bool value) {}
                               : (bool value) {
@@ -224,7 +224,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                         margin: const EdgeInsets.symmetric(horizontal: 3),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: const Color.fromARGB(255, 78, 180, 179)),
+                            color: Theme.of(context).colorScheme.primary),
                         child: Text(
                           widget.counter.value.toString(),
                           style: GoogleFonts.roboto(color: Colors.white),

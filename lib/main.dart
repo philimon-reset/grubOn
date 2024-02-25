@@ -19,7 +19,12 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   ThemeData _buildTheme(brightness) {
-    var baseTheme = ThemeData(brightness: brightness);
+    var baseTheme = ThemeData(
+        brightness: brightness,
+        colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+            backgroundColor: Colors.grey.shade300),
+        appBarTheme: AppBarTheme(color: Colors.grey.shade300));
 
     return baseTheme.copyWith(
       textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme),

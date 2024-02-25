@@ -136,7 +136,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
               radius: 20,
               backgroundColor: readOnly.value
                   ? Colors.grey
-                  : const Color.fromARGB(255, 78, 180, 179),
+                  : Theme.of(context).colorScheme.primary,
               child: IconButton(
                 color: Colors.white,
                 onPressed: () {
@@ -190,7 +190,7 @@ class _UpdateGroceryState extends State<UpdateGrocery> {
         padding:
             const EdgeInsets.only(bottom: 20, top: 20, left: 80, right: 80),
         foregroundColor: Colors.white,
-        backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         textStyle: const TextStyle(
           fontSize: 18.0,
           fontWeight: FontWeight.bold,

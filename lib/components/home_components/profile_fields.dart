@@ -53,7 +53,7 @@ class ProfileTextFields extends StatelessWidget {
               padding: const EdgeInsets.only(
                   bottom: 20, left: 140, right: 140, top: 20),
               foregroundColor: Colors.white,
-              backgroundColor: const Color.fromARGB(255, 78, 180, 179),
+              backgroundColor: Theme.of(context).colorScheme.primary,
               textStyle: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
