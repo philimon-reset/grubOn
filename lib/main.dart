@@ -1,4 +1,5 @@
 import "package:firebase_core/firebase_core.dart";
+import 'package:flutter_config/flutter_config.dart';
 import 'package:grubOn/auth_service/models/filter_provider.dart';
 import 'package:grubOn/pages/auth/auth_page.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 const c1 = Color.fromRGBO(25, 37, 61, 1);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterConfig.loadEnvVariables();
   // FirebaseFirestore.instance.settings =
   //     const Settings(persistenceEnabled: true);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
