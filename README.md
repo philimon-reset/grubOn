@@ -39,6 +39,9 @@ Coming Soon:
 
 # Demo and Screenshots
 
+<img src="./1.png" width="665" height="999"/>
+<img src="./2.png" width="665" height="738"/>
+
 # Authors
 
 Philimon Ayalew
