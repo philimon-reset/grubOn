@@ -1,5 +1,3 @@
-# grubOn
-
 # Grub On 🥕
 
 _A bite-sized solution to a global problem_
@@ -37,13 +35,13 @@ Coming Soon:
 
 # Installation
 
-## Prerequisites
+### Prerequisites
 
 - Flutter SDK: https://flutter.dev/docs/get-started/install
 - Android Studio or Visual Studio Code (with Flutter plugin) for development
 - Clone the Repository
 
-## Set Up Firebase
+### Set Up Firebase
 
 - Add firebase to your system using https://firebase.google.com/docs/flutter/setup?platform=android
 - Create a Firebase project at https://console.firebase.google.com/
@@ -56,7 +54,7 @@ Coming Soon:
 flutter run --flavor production
 ```
 
-## Install Dependencies
+### Install Dependencies
 
 - run
 
@@ -65,12 +63,12 @@ cd ./grubOn/
 flutter pub get
 ```
 
-## Configure Google Maps
+### Configure Google Maps
 
 - Follow the instructions at https://mapsplatform.google.com/ to obtain a Google Maps API key.
 - Specify your API key in the application through an env file named GOOGLE_API_KEY
 
-## Running the Project
+### Running the Project
 
 - Connect your Android device or iOS simulator to your development environment.
 - Run the following command in your terminal:
