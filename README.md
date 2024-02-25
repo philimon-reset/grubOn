@@ -67,7 +67,8 @@ flutter pub get
 
 ## Configure Google Maps
 
-- Follow the instructions at https://mapsplatform.google.com/ to obtain a Google Maps API key and configure it in your project.
+- Follow the instructions at https://mapsplatform.google.com/ to obtain a Google Maps API key.
+- Specify your API key in the application through an env file named GOOGLE_API_KEY
 
 ## Running the Project
 

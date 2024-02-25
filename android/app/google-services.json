@@ -10,6 +10,42 @@
       "client_info": {
         "mobilesdk_app_id": "1:254032794739:android:8d7e6111ff1a2a6e7cc606",
         "android_client_info": {
+          "package_name": "foodbridge.com.foodbridge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254032794739-inverfhkh78ppbtol3g61su7ttmoud06.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnv0hvyGoqoQQOkaAunzfpisZ3KlTkOME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254032794739-hvo126erlajroi37if1773b0btohrogf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "254032794739-b44hvrl5htsle9l1mt28kgcelndqhtoa.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "foodbridge.com.foodbridge.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254032794739:android:5b6a12a583307cde7cc606",
+        "android_client_info": {
           "package_name": "grubOn.com.grubOn"
         }
       },
@@ -35,7 +71,7 @@
               "client_id": "254032794739-b44hvrl5htsle9l1mt28kgcelndqhtoa.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "grubOn.com.grubOn.RunnerTests"
+                "bundle_id": "foodbridge.com.foodbridge.RunnerTests"
               }
             }
           ]
