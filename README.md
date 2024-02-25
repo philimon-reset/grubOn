@@ -94,6 +94,10 @@ Hizkyas Aberra
 
 - [@Doro-000](https://github.com/Doro-000)
 
+Salem Bisenebit
+
+- [@salemylkl](https://github.com/salemylkl)
+
 Grub On was crafted with a whole lot of 🍕 and a sprinkle of 🫰🏾 from our team in Bremen.
 
 Google Developer Student Clubs Constructor University.
