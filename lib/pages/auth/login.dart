@@ -6,6 +6,7 @@ import 'package:grubOn/components/util_components/my_button.dart';
 import 'package:grubOn/components/field_components/my_textfield.dart';
 import 'package:grubOn/components/util_components/squareTile.dart';
 import "package:google_fonts/google_fonts.dart";
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   // initalization controllers
@@ -86,18 +87,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.grey.shade100),
-        backgroundColor: Colors.grey[100],
+        appBar: AppBar(backgroundColor: Colors.white),
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 50),
-                  const Icon(
-                    Icons.lock,
-                    size: 100,
+                  SizedBox(
+                    width: 300,
+                    child: Lottie.network(
+                        "https://lottie.host/263c556e-b211-45b9-b739-cf31f893db9d/eBr6K03ORu.json"),
                   ),
                   const SizedBox(height: 10),
                   Text(

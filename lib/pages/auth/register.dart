@@ -7,6 +7,7 @@ import 'package:grubOn/components/util_components/my_button.dart';
 import 'package:grubOn/components/field_components/my_textfield.dart';
 import 'package:grubOn/components/util_components/show_error.dart';
 import 'package:google_fonts/google_fonts.dart';
+import "package:lottie/lottie.dart";
 
 class RegisterPage extends StatefulWidget {
   // initalization controllers
@@ -100,25 +101,25 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: Colors.grey.shade100),
-        backgroundColor: Colors.grey[100],
+        appBar: AppBar(backgroundColor: Colors.white),
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(
-                    Icons.door_front_door_outlined,
-                    size: 60,
+                  SizedBox(
+                    width: 200,
+                    child: Lottie.network(
+                        "https://lottie.host/229d1e0c-275c-48ac-9f96-fecc3f28eecc/daGNEOchku.json"),
                   ),
-                  const SizedBox(height: 10),
                   Text(
                     "Welcome",
                     style: GoogleFonts.robotoMono(fontSize: 30),
                   ),
                   const Text("Fill in the details below to Register"),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 10),
                   MyTextField(
                     controller: emailController,
                     hintText: "Email",
@@ -185,9 +186,6 @@ class _RegisterPageState extends State<RegisterPage> {
                       checkColor: Colors.white,
                       controlAffinity: ListTileControlAffinity.leading,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                   MyButton(buttonName: "Sign Up", onTap: signUserUp),
                   // Padding(

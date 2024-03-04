@@ -2,8 +2,13 @@
 
 _A bite-sized solution to a global problem_
 
-Grub On is your gateway to reducing food waste and fostering community
-connections. We empower Farmers, restuarants, and individuals to share or sell unwanted food, preventing it from ending up in landfills and creating a win-win situation for everyone.
+Grub On tackles food waste and fosters community connections by allowing individuals and businesses to share or sell surplus food. Users can easily list and discover various food items, from groceries to home-cooked meals, through an interactive map. An AI-powered freshness checker helps users assess quality, while upcoming features like grocery tracking and recipe inspiration further minimize waste.
+
+While the application is not released yet, users can build the application by typing:
+
+```
+flutter build apk
+```
 
 ### Key Features:
 
@@ -46,13 +51,6 @@ Coming Soon:
 - Add firebase to your system using https://firebase.google.com/docs/flutter/setup?platform=android
 - Create a Firebase project at https://console.firebase.google.com/
 - Enable the following Firebase services: Authentication and Firestore.
-- Download the GoogleServiceInfo.json file (for Android).
-- Open android/app/src/production/ and put the google-services.json there.
-- run
-
-```
-flutter run --flavor production
-```
 
 ### Install Dependencies
 

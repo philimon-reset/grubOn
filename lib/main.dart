@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         brightness: brightness,
         colorScheme: ColorScheme.fromSwatch(
             primarySwatch: Colors.deepPurple,
-            backgroundColor: Colors.grey.shade300),
-        appBarTheme: AppBarTheme(color: Colors.grey.shade300));
+            backgroundColor: Colors.grey.shade200),
+        appBarTheme: AppBarTheme(color: Colors.grey.shade200));
 
     return baseTheme.copyWith(
       textTheme: GoogleFonts.interTextTheme(baseTheme.textTheme),

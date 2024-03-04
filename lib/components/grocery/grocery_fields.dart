@@ -178,6 +178,7 @@ class _GroceryFieldsState extends State<GroceryFields> {
                           thumbIcon: thumbIcon,
                           value: widget.isSellable.value,
                           activeColor: Theme.of(context).colorScheme.primary,
+                          inactiveThumbColor: Colors.grey.shade400,
                           onChanged: widget.readOnly.value
                               ? (bool value) {}
                               : (bool value) {
@@ -202,8 +203,8 @@ class _GroceryFieldsState extends State<GroceryFields> {
                   // minus button
                   (widget.readOnly.value) && (widget.notCartPage ?? true)
                       ? Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.white, shape: BoxShape.circle),
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle),
                           child: IconButton(
                               icon: const Icon(null), onPressed: () {}),
                         )
@@ -233,8 +234,8 @@ class _GroceryFieldsState extends State<GroceryFields> {
                   // plus button
                   (widget.readOnly.value && (widget.notCartPage ?? true))
                       ? Container(
-                          decoration: const BoxDecoration(
-                              color: Colors.white, shape: BoxShape.circle),
+                          decoration:
+                              const BoxDecoration(shape: BoxShape.circle),
                           child: IconButton(
                               icon: const Icon(null), onPressed: () {}),
                         )
