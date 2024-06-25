@@ -2,7 +2,7 @@
 
 _A bite-sized solution to a global problem_
 
-🎊 2024 Google Solutions Challenge Global Top 100 Finalist 🎊
+🎊 Global Top 100 Finalist in the 2024 Google Solutions Challenge 🎊
 
 Grub On tackles food waste and fosters community connections by allowing individuals and businesses to share or sell surplus food. Users can easily list and discover various food items, from groceries to home-cooked meals, through an interactive map. An AI-powered freshness checker helps users assess quality, while upcoming features like grocery tracking and recipe inspiration further minimize waste.
 
